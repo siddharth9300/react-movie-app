@@ -18,9 +18,35 @@
 {
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #f56565;
+	background-color: #492f50;
 }
 
+.main-font{
+	font-family: 'Signika Negative', sans-serif;
+	
+
+}
+.movie-title{
+	font-family: 'Signika Negative', sans-serif;
+	font-weight: 400;
+	color: #E6DDC4;
+	
+}
+.movie-year{
+	font-family: 'Signika Negative', sans-serif;
+	font-weight: 600;
+	color: #cac8a7;
+}
+.add-fav{
+	font-family: 'Signika Negative', sans-serif;
+	
+
+}
+.rem-fav{
+	font-family: 'Signika Negative', sans-serif;
+	
+
+}
 /* #dark{
 	background-image: url(./MyComponents/sun.svg);
 	background-repeat: no-repeat;
