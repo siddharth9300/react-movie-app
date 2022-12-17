@@ -10,8 +10,8 @@ export const Footer = () => {
       <span className="ml-3 text-xl">To Watch</span>
 
     </Link>
-    <p className="text-sm text-gray-500 dark:text-gray-100 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© {new Date().getFullYear()}To Watch —
-      <Link href="https://github.com/siddharth9300" to="#" className="text-gray-600 dark:text-gray-200 ml-1" rel="noopener noreferrer" target="_blank">@siddharth9300</Link>
+    <p className="text-sm text-gray-500 dark:text-gray-100 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© {new Date().getFullYear()} To Watch —
+      <a href="https://github.com/siddharth9300" className="text-gray-600 dark:text-gray-200 ml-1" rel="noreferrer" target="_blank">@siddharth9300</a>
     </p>
 
   </div>
