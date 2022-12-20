@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import MoviesList from "./components/MoviesList";
-// import FavouritesMoviesList from "./components/FavouritesMoviesList";
 import MoviesListHeading from "./components/MovieListHeading";
 import Footer from "./components/Footer";
 import SearchBox from "./components/SearchBox";
@@ -10,6 +9,7 @@ import Header from "./components/Header";
 import About from "./components/About";
 import RemoveFavourites from "./components/RemoveFavourites";
 import { BrowserRouter as Router,Route,Switch} from "react-router-dom";
+
 
 // import Search from "./components/Search";
 
@@ -118,7 +118,7 @@ function App() {
 
   const removeFavouriteMovie = (movie) => {
     const newFavouriteList = favourites.filter(
-      (favourite) => favourite.imdbID !== movie.imdbID
+      (favourite) => (favourite.title || favourite.Title) !== (movie.title || movie.Title)
     );
 
     setFavourites(newFavouriteList);
@@ -140,7 +140,7 @@ function App() {
                   searchValue={searchValue}
                   setSearchValue={setSearchValue}
                 />
-                <MoviesListHeading heading="Popular" />
+                <MoviesListHeading heading="Popular Movies - Top 30" />
                 <MoviesList
                   movies={popmovies}
                   handleFavouritesClick={addFavouritesMovie}
@@ -162,7 +162,7 @@ function App() {
 
                 {/* favourites */}
 
-                <MoviesListHeading heading="Favourites" />
+                <MoviesListHeading heading="Favourites Movies" />
 
                 <MoviesList
                   movies={favourites}
