@@ -10,6 +10,7 @@ import About from "./components/About";
 import RemoveFavourites from "./components/RemoveFavourites";
 import MovieDetails from "./components/MovieDetails";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import MovieSlides from "./components/MovieSlides";
 
 // import Search from "./components/Search";
 
@@ -21,37 +22,34 @@ function App() {
   // const [setMovieId , SetMovieDetail]= useState([]);
 
   const getPopRequest = () => {
-    
     // const options = {
-      //   method: "GET",
-      //   headers: {
-        //     "X-RapidAPI-Key": "bf11fd3266msh419a46d02d0ef99p1e6ecajsnf2925e9766a2",
-        //     "X-RapidAPI-Host":
-        //       "most-popular-movies-right-now-daily-update.p.rapidapi.com",
-        //   },
-        // };
-        
-        fetch(
-          "https://api.themoviedb.org/3/movie/popular?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&page=1"
-          )
-          .then((response) => response.json())
-          
-          .then((response) => SetPopMovies(response.results))
-          .then((response) => console.log(response.results))
-          .catch((err) => console.error(err));
-          
-        // const url = 'https://api.themoviedb.org/3/movie/popular?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&page=1';
-      
-        // const response = await fetch(url);
-        // const responseJson = await response.json();
-    
-        // if (responseJson.Search) {
-        //   SetPopMovies(responseJson.Search);
-        //   console.log(responseJson.Search);
-        // }
-     
+    //   method: "GET",
+    //   headers: {
+    //     "X-RapidAPI-Key": "bf11fd3266msh419a46d02d0ef99p1e6ecajsnf2925e9766a2",
+    //     "X-RapidAPI-Host":
+    //       "most-popular-movies-right-now-daily-update.p.rapidapi.com",
+    //   },
+    // };
 
-        };
+    fetch(
+      "https://api.themoviedb.org/3/movie/popular?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&page=1"
+    )
+      .then((response) => response.json())
+
+      .then((response) => SetPopMovies(response.results))
+      .then((response) => console.log(response.results))
+      .catch((err) => console.error(err));
+
+    // const url = 'https://api.themoviedb.org/3/movie/popular?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&page=1';
+
+    // const response = await fetch(url);
+    // const responseJson = await response.json();
+
+    // if (responseJson.Search) {
+    //   SetPopMovies(responseJson.Search);
+    //   console.log(responseJson.Search);
+    // }
+  };
 
   useEffect(() => {
     getPopRequest();
@@ -66,32 +64,28 @@ function App() {
   //     },
   //   };
 
+  // const url = `https://mdblist.p.rapidapi.com/?s=${searchValue}`;
 
-    // const url = `https://mdblist.p.rapidapi.com/?s=${searchValue}`;
+  // const response = await fetch(url , options);
+  // const responseJson = await response.json();
 
-    // const response = await fetch(url , options);
-    // const responseJson = await response.json();
-
-    // if (responseJson.Search) {
-    //   setMovies(responseJson.Search);
-    //   console.log(responseJson.Search);
-    // }
-    
+  // if (responseJson.Search) {
+  //   setMovies(responseJson.Search);
+  //   console.log(responseJson.Search);
+  // }
 
   // };
 
   const getMovieRequest = async (searchValue) => {
-    
+    fetch(
+      `https://api.themoviedb.org/3/search/movie?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&query=${searchValue}&page=1&include_adult=false`
+    )
+      .then((response) => response.json())
+      // .then(console.log(url))
+      .then((response) => setMovies(response.results))
+      .then((response) => console.log(response))
 
-
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&query=${searchValue}&page=1&include_adult=false`)
-    .then((response) => response.json())
-    // .then(console.log(url))
-    .then((response) => setMovies(response.results))
-    .then((response) => console.log(response))
-  
-    .catch((err) => console.error(err));
-
+      .catch((err) => console.error(err));
 
     // const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=639a737`;
 
@@ -105,7 +99,7 @@ function App() {
   };
 
   useEffect(() => {
-    getMovieRequest(searchValue); 
+    getMovieRequest(searchValue);
   }, [searchValue]);
 
   useEffect(() => {
@@ -125,22 +119,26 @@ function App() {
   };
 
   const addFavouritesMovie = (movie) => {
-    const newFavouriteList = [...favourites, movie]; 
+    const newFavouriteList = [...favourites, movie];
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
   };
 
   const removeFavouriteMovie = (movie) => {
     const newFavouriteList = favourites.filter(
-      (favourite) =>
-        (favourite.id ) !== (movie.id )
+      (favourite) => favourite.id !== movie.id
     );
 
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
   };
 
+
+
   return (
+
+  <>
+
     <Router>
       <Header />
       {/* <Search/> */}
@@ -156,6 +154,13 @@ function App() {
                   searchValue={searchValue}
                   setSearchValue={setSearchValue}
                 />
+
+                <MovieSlides
+                  movies={popmovies}
+                  handleFavouritesClick={addFavouritesMovie}
+                  favouriteComponent={AddFavourites}
+                />
+
                 <MoviesListHeading heading="Popular Movies - Top 20" />
                 <MoviesList
                   movies={popmovies}
@@ -163,7 +168,6 @@ function App() {
                   favouriteComponent={AddFavourites}
                 />
 
-                
                 {/* <Popular 
                   movies={popmovies}
                   handleFavouritesClick={addFavouritesMovie}
@@ -194,20 +198,19 @@ function App() {
         <Route exact path="/about">
           <About />
         </Route>
-        <Route
-          path="/movie/:id"
-        >
+        <Route path="/movie/:id">
           <MovieDetails />
         </Route>
 
         <Route path="/*">
           <About />
         </Route>
-
       </Switch>
 
       <Footer />
     </Router>
+
+    </>
   );
 }
 

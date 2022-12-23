@@ -12,6 +12,7 @@ const SearchBox = (props) => {
               className="block w-full flex-1 py-2 px-3 rounded focus:outline-none bg-gray-200 hover:bg-gray-300"
               value={props.value}
               onChange={(event) => props.setSearchValue(event.target.value)}
+              
               placeholder="Search movie.."
             />
           </div>

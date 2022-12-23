@@ -20,7 +20,7 @@ const MoviesList = (props) => {
                   <div class="min-h-screenpy-6 mx-5 w-max flex flex-col justify-center ">
                     
                     <div class=" sm:max-w-xl sm:mx-auto">
-                      <div class="dark:bg-white bg-slate-300 shadow-lg border-gray-100 h-96	 border sm:rounded-3xl p-8 flex space-x-8">
+                      <div class="dark:bg-white bg-gray-200 shadow-lg border-gray-100 h-96	 border sm:rounded-3xl p-8 flex space-x-8">
                        
                         <div class="h-2/2 overflow-visible w-2/6">
                             <img class="rounded-3xl shadow-lg" src={`https://image.tmdb.org/t/p/original${movie && movie.poster_path}`} alt=""/>
