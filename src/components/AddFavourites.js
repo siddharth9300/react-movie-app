@@ -4,13 +4,13 @@ const AddFavourites = () => {
   return (
     <div>
       <Link className="text-lg max-md:text-sm add-fav justify-center flex text-red-600 font-bold">
-        Add to Favourites
+        {/* Add to Favourites */}
 
         <svg
           className="my-auto ml-4 flex"
           xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
+          width="32"
+          height="32"
           fill="red"
           class="bi bi-heart-fill"
           viewBox="0 0 16 16"

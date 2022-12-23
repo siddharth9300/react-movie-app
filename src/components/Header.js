@@ -4,6 +4,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Dark from "./Dark";
 
+
 const Header = () => {
 
   return (
@@ -20,6 +21,7 @@ const Header = () => {
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
       </svg> */}
           <img
+            // src="./tv.png"
             src="./tv.png"
             className="w-10 h-10  text-white "
             alt="logo"
