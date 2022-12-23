@@ -13,8 +13,6 @@ const SearchBox = (props) => {
               value={props.value}
               onChange={(event) => props.setSearchValue(event.target.value)}
               placeholder="Search movie.."
-              // onFocus={() => setFocus(true)}
-              // onBlur={() => setFocus(false)}
             />
           </div>
         </div>
