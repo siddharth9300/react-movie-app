@@ -29,21 +29,21 @@ const Header = () => {
           />
           <span className="ml-3 max-md:mr-3 main-font text-xl mt-2 dark:text-white dark:hover:text-gray-400 max-md:text-s">To Watch</span>
         </Link>
-        <nav className="md:mr-auto sm:mt-2 flex flex-wrap max-sm:mx-auto max-md:mt-0 max-md:mx-0 text-base dark:text-gray-200 justify-center ">
+        <nav className="md:mr-auto  sm:mt-2 flex flex-wrap max-sm:mx-auto max-md:mt-0 max-md:mx-0 text-base dark:text-gray-200 justify-center ">
           <span className=" md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400 h-8"></span>
-          <Link className="mr-5 main-font hover:text-gray-900  dark:hover:text-gray-400" to="/">
+          <Link className="mr-5 max-md:mr-3 main-font hover:text-gray-900  dark:hover:text-gray-400" to="/">
             Home
           </Link>
-          <Link className="mr-5 main-font hover:text-gray-900 dark:hover:text-gray-400" to="/PopularMovies">
+          <Link className="mr-5 max-md:mr-3 main-font hover:text-gray-900 dark:hover:text-gray-400" to="/PopularMovies">
           Top 20 Movies
           </Link>
-          <Link className="mr-5 main-font hover:text-gray-900 dark:hover:text-gray-400" to="/PopularTv">
-          Top 20 Tv
+          <Link className="mr-5 max-md:mr-3 main-font hover:text-gray-900 dark:hover:text-gray-400" to="/PopularTv">
+          Top 20 Tv Series
           </Link>
-          <Link className="mr-5 main-font hover:text-gray-900 dark:hover:text-gray-400" to="/Favourites">
+          <Link className="mr-5 max-md:mr-3 main-font hover:text-gray-900 dark:hover:text-gray-400" to="/Favourites">
           Favourites
           </Link>
-          <Link className="mr-5 main-font hover:text-gray-900 dark:hover:text-gray-400" to="/about">
+          <Link className="mr-5 max-md:mr-3 main-font hover:text-gray-900 dark:hover:text-gray-400" to="/about">
             About
           </Link>
 

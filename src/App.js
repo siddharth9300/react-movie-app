@@ -150,13 +150,13 @@ function App() {
                     favouriteComponent={AddFavourites}
                   />
 
-                  <MoviesListHeading heading="Movies" />
+                  <MoviesListHeading heading="Searched Movies" />
                   <MoviesList
                     movies={movies}
                     handleFavouritesClick={addFavouritesMovie}
                     favouriteComponent={AddFavourites}
                   />
-                  <MoviesListHeading heading="Tv" />
+                  <MoviesListHeading heading="Searched Tv Series" />
                   <MoviesList
                     movies={tv}
                     handleFavouritesClick={addFavouritesMovie}
