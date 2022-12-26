@@ -7,14 +7,11 @@ import SearchBox from "./components/SearchBox";
 import AddFavourites from "./components/AddFavourites";
 import Header from "./components/Header";
 import About from "./components/About";
-import Otherlinks from "./components/Otherlinks";
 import RemoveFavourites from "./components/RemoveFavourites";
 import MovieDetails from "./components/MovieDetails";
 import Moviepage from "./components/Moviepage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MovieSlides from "./components/MovieSlides";
-
-// import Search from "./components/Search";
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -23,18 +20,8 @@ function App() {
   const [searchValue, setSearchValue] = useState("");
   const [popmovies, SetPopMovies] = useState([]);
   const [poptv, SetPopTv] = useState([]);
-  // const [setMovieId , SetMovieDetail]= useState([]);
 
   const getPopMovieRequest = () => {
-    // const options = {
-    //   method: "GET",
-    //   headers: {
-    //     "X-RapidAPI-Key": "bf11fd3266msh419a46d02d0ef99p1e6ecajsnf2925e9766a2",
-    //     "X-RapidAPI-Host":
-    //       "most-popular-movies-right-now-daily-update.p.rapidapi.com",
-    //   },
-    // };
-
     fetch(
       "https://api.themoviedb.org/3/movie/popular?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&page=1"
     )
@@ -50,15 +37,6 @@ function App() {
   }, []);
 
   const getPopTvRequest = () => {
-    // const options = {
-    //   method: "GET",
-    //   headers: {
-    //     "X-RapidAPI-Key": "bf11fd3266msh419a46d02d0ef99p1e6ecajsnf2925e9766a2",
-    //     "X-RapidAPI-Host":
-    //       "most-popular-movies-right-now-daily-update.p.rapidapi.com",
-    //   },
-    // };
-
     fetch(
       "https://api.themoviedb.org/3/tv/popular?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&page=1"
     )
@@ -73,27 +51,6 @@ function App() {
     getPopTvRequest();
   }, []);
 
-  // const getMovieRequest = async (searchValue) => {
-  //   const options = {
-  //     method: "GET",
-  //     headers: {
-  //       "X-RapidAPI-Key": "bf11fd3266msh419a46d02d0ef99p1e6ecajsnf2925e9766a2",
-  //       "X-RapidAPI-Host": "mdblist.p.rapidapi.com",
-  //     },
-  //   };
-
-  // const url = `https://mdblist.p.rapidapi.com/?s=${searchValue}`;
-
-  // const response = await fetch(url , options);
-  // const responseJson = await response.json();
-
-  // if (responseJson.Search) {
-  //   setMovies(responseJson.Search);
-  //   console.log(responseJson.Search);
-  // }
-
-  // };
-
   const getMovieRequest = async (searchValue) => {
     fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&query=${searchValue}&page=1&include_adult=false`
@@ -103,16 +60,6 @@ function App() {
       .then((response) => console.log(response))
 
       .catch((err) => console.error(err));
-
-    // const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=639a737`;
-
-    // const response = await fetch(url);
-    // const responseJson = await response.json();
-
-    // if (responseJson.Search) {
-    //   setMovies(responseJson.Search);
-    //   console.log(responseJson.Search);
-    // }
   };
 
   useEffect(() => {
@@ -128,16 +75,6 @@ function App() {
       .then((response) => console.log(response))
 
       .catch((err) => console.error(err));
-
-    // const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=639a737`;
-
-    // const response = await fetch(url);
-    // const responseJson = await response.json();
-
-    // if (responseJson.Search) {
-    //   setMovies(responseJson.Search);
-    //   console.log(responseJson.Search);
-    // }
   };
 
   useEffect(() => {
@@ -206,34 +143,25 @@ function App() {
                     favouriteComponent={AddFavourites}
                   />
 
-                    <MoviesListHeading heading="Popular Tv - Top 20" />
+                  <MoviesListHeading heading="Popular Tv - Top 20" />
                   <MoviesList
                     movies={poptv}
                     handleFavouritesClick={addFavouritesMovie}
                     favouriteComponent={AddFavourites}
                   />
 
-                  {/* <Popular 
-                  movies={popmovies}
-                  handleFavouritesClick={addFavouritesMovie}
-                  // popularComponent={getPopularMovies}
-                  /> */}
-
-                  {/* Movie list */}
                   <MoviesListHeading heading="Movies" />
                   <MoviesList
                     movies={movies}
                     handleFavouritesClick={addFavouritesMovie}
                     favouriteComponent={AddFavourites}
                   />
-                   <MoviesListHeading heading="Tv" />
+                  <MoviesListHeading heading="Tv" />
                   <MoviesList
                     movies={tv}
                     handleFavouritesClick={addFavouritesMovie}
                     favouriteComponent={AddFavourites}
                   />
-
-                  {/* favourites */}
 
                   <MoviesListHeading heading="Favourites Movies" />
 
@@ -247,12 +175,10 @@ function App() {
             }}
           ></Route>
           <Route exact path="/about">
-            {/* <Otherlinks/> */}
             <About />
           </Route>
 
           <Route path="/movie/:id">
-            <Otherlinks />
             <MovieDetails
               handleFavouritesClick={addFavouritesMovie}
               favouriteComponent={AddFavourites}
