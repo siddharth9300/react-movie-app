@@ -68,7 +68,7 @@ function Dark() {
     </div> */}
 
     <div className="flex flex-end items-left">
-      <button id="dark" className="cursor-pointer transition-all max-md:mr-6  hover:rounded-md  p-2  h-12 w-12 md:my-2 md:mx-10 rounded-xl" onClick={handleThemeSwitch}>
+      <button id="dark" className="cursor-pointer transition-all max-md:mr-3 max-md:mt-6 hover:rounded-md  p-2 max-md:h-10 max-md:w-10  h-12 w-12 md:my-2 md:mx-10 rounded-xl" onClick={handleThemeSwitch}>
         
       </button>
     </div>

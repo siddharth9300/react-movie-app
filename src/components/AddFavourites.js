@@ -6,9 +6,9 @@ const AddFavourites = () => {
       <Link className="text-lg max-md:text-sm add-fav justify-center flex text-red-600 font-bold">
         {/* Add to Favourites */}
 
-        <svg
-          className="my-auto ml-4 flex"
-          xmlns="http://www.w3.org/2000/svg"
+        <svg 
+          className="my-auto ml-4 flex hover:fill-red-600 max-md:w-5 max-md:h-5"
+          // xmlns="http://www.w3.org/2000/svg"
           width="32"
           height="32"
           fill="red"

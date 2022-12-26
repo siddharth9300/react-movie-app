@@ -7,8 +7,10 @@ import SearchBox from "./components/SearchBox";
 import AddFavourites from "./components/AddFavourites";
 import Header from "./components/Header";
 import About from "./components/About";
+import Otherlinks from "./components/Otherlinks";
 import RemoveFavourites from "./components/RemoveFavourites";
 import MovieDetails from "./components/MovieDetails";
+import Moviepage from "./components/Moviepage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MovieSlides from "./components/MovieSlides";
 
@@ -16,12 +18,14 @@ import MovieSlides from "./components/MovieSlides";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [tv, setTv] = useState([]);
   const [favourites, setFavourites] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [popmovies, SetPopMovies] = useState([]);
+  const [poptv, SetPopTv] = useState([]);
   // const [setMovieId , SetMovieDetail]= useState([]);
 
-  const getPopRequest = () => {
+  const getPopMovieRequest = () => {
     // const options = {
     //   method: "GET",
     //   headers: {
@@ -39,20 +43,34 @@ function App() {
       .then((response) => SetPopMovies(response.results))
       .then((response) => console.log(response.results))
       .catch((err) => console.error(err));
-
-    // const url = 'https://api.themoviedb.org/3/movie/popular?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&page=1';
-
-    // const response = await fetch(url);
-    // const responseJson = await response.json();
-
-    // if (responseJson.Search) {
-    //   SetPopMovies(responseJson.Search);
-    //   console.log(responseJson.Search);
-    // }
   };
 
   useEffect(() => {
-    getPopRequest();
+    getPopMovieRequest();
+  }, []);
+
+  const getPopTvRequest = () => {
+    // const options = {
+    //   method: "GET",
+    //   headers: {
+    //     "X-RapidAPI-Key": "bf11fd3266msh419a46d02d0ef99p1e6ecajsnf2925e9766a2",
+    //     "X-RapidAPI-Host":
+    //       "most-popular-movies-right-now-daily-update.p.rapidapi.com",
+    //   },
+    // };
+
+    fetch(
+      "https://api.themoviedb.org/3/tv/popular?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&page=1"
+    )
+      .then((response) => response.json())
+
+      .then((response) => SetPopTv(response.results))
+      .then((response) => console.log(response.results))
+      .catch((err) => console.error(err));
+  };
+
+  useEffect(() => {
+    getPopTvRequest();
   }, []);
 
   // const getMovieRequest = async (searchValue) => {
@@ -81,7 +99,6 @@ function App() {
       `https://api.themoviedb.org/3/search/movie?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&query=${searchValue}&page=1&include_adult=false`
     )
       .then((response) => response.json())
-      // .then(console.log(url))
       .then((response) => setMovies(response.results))
       .then((response) => console.log(response))
 
@@ -100,6 +117,31 @@ function App() {
 
   useEffect(() => {
     getMovieRequest(searchValue);
+  }, [searchValue]);
+
+  const getTvRequest = async (searchValue) => {
+    fetch(
+      `https://api.themoviedb.org/3/search/tv?api_key=f2df3f7b3e3ad6698bad061c920dafdc&language=en-US&query=${searchValue}&page=1&include_adult=false`
+    )
+      .then((response) => response.json())
+      .then((response) => setTv(response.results))
+      .then((response) => console.log(response))
+
+      .catch((err) => console.error(err));
+
+    // const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=639a737`;
+
+    // const response = await fetch(url);
+    // const responseJson = await response.json();
+
+    // if (responseJson.Search) {
+    //   setMovies(responseJson.Search);
+    //   console.log(responseJson.Search);
+    // }
+  };
+
+  useEffect(() => {
+    getTvRequest(searchValue);
   }, [searchValue]);
 
   useEffect(() => {
@@ -133,83 +175,119 @@ function App() {
     saveToLocalStorage(newFavouriteList);
   };
 
-
-
   return (
+    <>
+      <Router>
+        <Header />
+        {/* <Search/> */}
 
-  <>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return (
+                <>
+                  <SearchBox
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
+                  />
 
-    <Router>
-      <Header />
-      {/* <Search/> */}
+                  <MovieSlides
+                    movies={popmovies}
+                    handleFavouritesClick={addFavouritesMovie}
+                    favouriteComponent={AddFavourites}
+                  />
 
-      <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => {
-            return (
-              <>
-                <SearchBox
-                  searchValue={searchValue}
-                  setSearchValue={setSearchValue}
-                />
+                  <MoviesListHeading heading="Popular Movies - Top 20" />
+                  <MoviesList
+                    movies={popmovies}
+                    handleFavouritesClick={addFavouritesMovie}
+                    favouriteComponent={AddFavourites}
+                  />
 
-                <MovieSlides
-                  movies={popmovies}
-                  handleFavouritesClick={addFavouritesMovie}
-                  favouriteComponent={AddFavourites}
-                />
+                    <MoviesListHeading heading="Popular Tv - Top 20" />
+                  <MoviesList
+                    movies={poptv}
+                    handleFavouritesClick={addFavouritesMovie}
+                    favouriteComponent={AddFavourites}
+                  />
 
-                <MoviesListHeading heading="Popular Movies - Top 20" />
-                <MoviesList
-                  movies={popmovies}
-                  handleFavouritesClick={addFavouritesMovie}
-                  favouriteComponent={AddFavourites}
-                />
-
-                {/* <Popular 
+                  {/* <Popular 
                   movies={popmovies}
                   handleFavouritesClick={addFavouritesMovie}
                   // popularComponent={getPopularMovies}
                   /> */}
 
-                {/* Movie list */}
-                <MoviesListHeading heading="Movies" />
-                <MoviesList
-                  movies={movies}
-                  handleFavouritesClick={addFavouritesMovie}
-                  favouriteComponent={AddFavourites}
-                />
+                  {/* Movie list */}
+                  <MoviesListHeading heading="Movies" />
+                  <MoviesList
+                    movies={movies}
+                    handleFavouritesClick={addFavouritesMovie}
+                    favouriteComponent={AddFavourites}
+                  />
+                   <MoviesListHeading heading="Tv" />
+                  <MoviesList
+                    movies={tv}
+                    handleFavouritesClick={addFavouritesMovie}
+                    favouriteComponent={AddFavourites}
+                  />
 
-                {/* favourites */}
+                  {/* favourites */}
 
-                <MoviesListHeading heading="Favourites Movies" />
+                  <MoviesListHeading heading="Favourites Movies" />
 
-                <MoviesList
-                  movies={favourites}
-                  handleFavouritesClick={removeFavouriteMovie}
-                  favouriteComponent={RemoveFavourites}
-                />
-              </>
-            );
-          }}
-        ></Route>
-        <Route exact path="/about">
-          <About />
-        </Route>
-        <Route path="/movie/:id">
-          <MovieDetails />
-        </Route>
+                  <MoviesList
+                    movies={favourites}
+                    handleFavouritesClick={removeFavouriteMovie}
+                    favouriteComponent={RemoveFavourites}
+                  />
+                </>
+              );
+            }}
+          ></Route>
+          <Route exact path="/about">
+            {/* <Otherlinks/> */}
+            <About />
+          </Route>
 
-        <Route path="/*">
-          <About />
-        </Route>
-      </Switch>
+          <Route path="/movie/:id">
+            <Otherlinks />
+            <MovieDetails
+              handleFavouritesClick={addFavouritesMovie}
+              favouriteComponent={AddFavourites}
+            />
+          </Route>
 
-      <Footer />
-    </Router>
+          <Route path="/PopularMovies">
+            <MoviesListHeading heading="Popular Movies - Top 20" />
+            <Moviepage
+              movies={popmovies}
+              handleFavouritesClick={addFavouritesMovie}
+              favouriteComponent={AddFavourites}
+            />
+          </Route>
+          <Route path="/PopularTv">
+            <MoviesListHeading heading="Popular Tv - Top 20" />
+            <Moviepage
+              movies={poptv}
+              handleFavouritesClick={addFavouritesMovie}
+              favouriteComponent={AddFavourites}
+            />
+          </Route>
 
+          <Route path="/Favourites">
+            <MoviesListHeading heading="Favourites" />
+            <Moviepage
+              movies={favourites}
+              handleFavouritesClick={removeFavouriteMovie}
+              favouriteComponent={RemoveFavourites}
+            />
+          </Route>
+        </Switch>
+
+        <Footer />
+      </Router>
     </>
   );
 }

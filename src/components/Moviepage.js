@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MoviesList = (props) => {
+const Moviepage = (props) => {
   const FavouriteComponent = props.favouriteComponent;
 
   return (
     <>
-      <div className="flex flex-row bg-white dark:bg-slate-900 m-auto pb-10 p-auto overflow-x-scroll hide-scroll-bar">
+      <div className="flex flex-row flex-wrap justify-center bg-white dark:bg-slate-900 m-auto pb-10 p-auto ">
         {/*       
         <div className="flex overflow-x-scroll pb-10 hide-scroll-bar">
           <div className="flex flex-nowrap lg:ml-20 md:ml-20 ml-10 "> */}
 
         {props.movies?.map((movie) => (
-          <div class="min-h-screenpy-6 max-md:mx-10 mx-5 max-md:w-11/12 w-max flex flex-col justify-center ">
+          <div class="min-h-screenpy-6 max-md:mx-10 m-10 max-md:w-11/12 w-max flex flex-col justify-center ">
             <div class="max-md:w-96  sm:max-w-xl w-max">
               <div class="dark:bg-white bg-gray-200 shadow-lg border-gray-100 h-96  border max-md:rounded-3xl sm:rounded-3xl p-8 flex space-x-8">
                 <div class="max-md:w-5/6 overflow-visible w-3/6">
@@ -65,4 +65,4 @@ const MoviesList = (props) => {
   );
 };
 
-export default MoviesList;
+export default Moviepage;
