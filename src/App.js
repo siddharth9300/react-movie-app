@@ -214,10 +214,11 @@ function App() {
               favouriteComponent={RemoveFavourites}
             />
           </Route>
+        </Switch>
+        
           <Route exact path="/*">
             <Error />
           </Route>
-        </Switch>
 
         <Footer />
       </Router>
