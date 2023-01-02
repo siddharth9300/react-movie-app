@@ -7,6 +7,7 @@ import SearchBox from "./components/SearchBox";
 import AddFavourites from "./components/AddFavourites";
 import Header from "./components/Header";
 import About from "./components/About";
+import Error from "./components/Error";
 import RemoveFavourites from "./components/RemoveFavourites";
 import MovieDetails from "./components/MovieDetails";
 import Moviepage from "./components/Moviepage";
@@ -173,11 +174,16 @@ function App() {
                 </>
               );
             }}
-          ></Route>
+          >
+
+          </Route>
+
           <Route exact path="/about">
             <About />
           </Route>
-
+        <Route exact path="/*">
+            <Error />
+          </Route>
           <Route path="/movie/:id">
             <MovieDetails
               handleFavouritesClick={addFavouritesMovie}
