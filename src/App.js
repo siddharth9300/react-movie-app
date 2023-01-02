@@ -181,9 +181,7 @@ function App() {
           <Route exact path="/about">
             <About />
           </Route>
-        <Route exact path="/*">
-            <Error />
-          </Route>
+        
           <Route path="/movie/:id">
             <MovieDetails
               handleFavouritesClick={addFavouritesMovie}
@@ -215,6 +213,9 @@ function App() {
               handleFavouritesClick={removeFavouriteMovie}
               favouriteComponent={RemoveFavourites}
             />
+          </Route>
+          <Route exact path="/*">
+            <Error />
           </Route>
         </Switch>
 
