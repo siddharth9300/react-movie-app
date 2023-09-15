@@ -21,7 +21,7 @@ A movie app built using React for browsing and discovering movies from a movie d
 
 1. Clone the repository to your local machine using `git clone`.
 
-git clone https://github.com/your-username/react-movie-app.git
+git clone https://github.com/siddharth9300/react-movie-app.git
 
 
 2. Navigate to the project directory.
